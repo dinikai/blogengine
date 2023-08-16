@@ -1,0 +1,34 @@
+<h2 style="display: inline-block;"><span class="icon-pencil icon"></span> Notes</h2>
+<div class="number-circle">@notesCount</div>
+
+<div class="after-header">
+    <span style="margin-right: 5px;">You have <b>@notesCount</b> notes</span>
+    <a class="button" href="/admin/notes/new">New note</a>
+</div>
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Last changed</th>
+        <th>Status</th>
+        <th>Markup</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @notesList
+</table>
+
+<script>activateMenuItem("notes");</script>
+
+!==note
+<tr>
+    <td>$number</td>
+    <td><span class="bold">$title</span></td>
+    <td>$lastChanged</td>
+    <td>$status</td>
+    <td>$markup</td>
+    <td><a href="/note/$id">Go</a> / <a href="/admin/notes/edit/?id=$id" class="edit-link">Edit</a></td>
+    <td><a href="/admin/notes/remove/?id=$id" onclick="return removeItem(`$title`);" class="remove-link">Remove</a></td>
+</tr>
+==!

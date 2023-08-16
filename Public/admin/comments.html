@@ -1,0 +1,38 @@
+<h2 style="display: inline-block;"><span class="icon-bubbles2 icon"></span> Comments</h2>
+<div class="number-circle">@rootCount</div>
+<div class="v-margin"></div>
+
+<div class="admin-comments">
+    @comments
+</div>
+
+<script>activateMenuItem("comments");</script>
+
+!==comment
+<div class="admin-comment $class">
+    From <i>$author</i> at <a href="/note/$noteId">$noteName</a><br>
+    <span class="admin-comment-header">$text</span>
+    <br>
+    <div class="text-h-menu">
+        $moderate
+        <a href="/admin/comments/remove?id=$id" class="remove-link">Delete</a>
+    </div>
+</div>
+==!
+
+!==commentModerate
+<a href="/admin/comments/allow?id=$id" class="allow-link">Allow</a>
+<a href="/admin/comments/block?id=$id" class="block-link">Block</a>
+==!
+
+!==commentModerateBlocked
+<a href="/admin/comments/allow?id=$id" class="allow-link">Unblock</a>
+==!
+
+!==commentModerateAllowed
+<a href="/admin/comments/block?id=$id" class="block-link">Block</a>
+==!
+
+!==noComments
+You haven't comments
+==!

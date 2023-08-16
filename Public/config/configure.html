@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure new blog</title>
+</head>
+<body>
+    Hello! Welcome to your new blog. Let's configure it<br>
+    <form method="post">
+        <fieldset>
+            <legend>Add new user</legend>
+            <p>
+                First, you need to add a new user
+            </p>
+            <label>
+                Login:<br>
+                <input type="text" name="adm_login" minlength="3" required>
+            </label><br>
+            <label>
+                Password:<br>
+                <input type="password" name="adm_password" required>
+            </label><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Application settings</legend>
+            <label>
+                Application name:<br>
+                <input type="text" name="app_name" required>
+            </label><br>
+        </fieldset>
+
+        <input type="submit" value="Finish configuring">
+    </form>
+</body>
+</html>

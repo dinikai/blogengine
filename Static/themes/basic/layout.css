@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: "PT Serif", serif; }
+
+* {
+  box-sizing: border-box; }
+
+.container {
+  padding: 25px 23% 35px 23%;
+  height: 100%; }
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  max-height: 100%; }
+
+.error-404 {
+  text-align: center; }
+  .error-404 h1 {
+    font-size: 70pt;
+    font-weight: 600;
+    margin: 10px 0 10px 0; }
+  .error-404 p {
+    font-size: 13pt; }
+
+a {
+  color: #3f6be2;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.1s;
+  cursor: pointer; }
+
+a:hover {
+  text-decoration: none; }
+
+a:active {
+  color: #ff1b1b; }
+
+.form input, .form select, .form textarea {
+  border: 1px solid #b1b1b1;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.15s; }
+
+.form input:focus, .form select:focus, .form textarea:focus {
+  border-color: #2c2c2c; }
+
+.form {
+  width: 100%; }
+  .form * {
+    width: 100%; }
+  .form input, .form select {
+    height: 33px;
+    font-family: "PT Serif", serif;
+    padding: 5px; }
+  .form textarea {
+    resize: vertical;
+    height: 500px;
+    font-size: 12pt;
+    font-family: 'JetBrains Mono', monospace; }
+  .form label {
+    display: block; }
+  .form .title-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 5fr 1fr; }
+  .form .title-grid-page {
+    grid-template-columns: 4fr 1fr 1fr !important; }
+
+.form > * {
+  margin-bottom: 10px; }
+
+.comments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; }
+  .comments .comment {
+    width: 100%;
+    background: #fff;
+    height: max-content;
+    border-bottom: 1px solid #cacaca;
+    padding: 10px; }
+    .comments .comment .comment-head {
+      font-size: 13pt;
+      padding: 3px; }
+    .comments .comment .comment-body {
+      padding: 7px; }
+  .comments .comment:last-of-type {
+    border: none; }
+
+.large-input {
+  font-size: 13pt;
+  font-weight: 600; }
+
+.v-margin {
+  margin-bottom: 30px; }
+
+.icon {
+  color: #3d3d3d; }
+
+.reply {
+  text-decoration: none; }
+
+.under-comment > * {
+  margin-right: 10px; }
+
+h1, h2, h3 {
+  font-weight: 400; }
+
+/*# sourceMappingURL=layout.css.map */

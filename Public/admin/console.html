@@ -1,0 +1,66 @@
+<h2><span class="icon-home icon"></span> Console</h2>
+<div class="v-margin"></div>
+
+<div class="console-cards-column">
+    <div class="console-cards-row">
+        <div class="console-card">
+            <div class="console-card-head">Your content</div>
+            <div class="console-card-body">
+                <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 50px;">
+                    <a href="/admin/notes"><span class="icon-pencil icon"></span> @notesCount Notes</a>
+                    <a href="/admin/pages"> <span class="icon-folder-open icon"></span> @pagesCount Pages</a>
+                    <a href="/admin/comments"> <span class="icon-bubbles2 icon"></span> @commentsCount Comments</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="console-card">
+            <div class="console-card-head">Recent comments</div>
+            <div class="console-card-body last-comments">
+                @lastComments
+            </div>
+        </div>
+    </div>
+
+    <div class="console-cards-row">
+        <div class="console-card">
+            <div class="console-card-head">Quick draft</div>
+            <div class="console-card-body">
+                <form action="/admin/notes/new" class="form" method="post" autocomplete="off">
+                    <label>
+                        Name:<br>
+                        <input type="text" name="name" required>
+                    </label>
+                    <textarea name="content" style="height: 100px;" spellcheck="false" required></textarea>
+                    
+                    <input type="hidden" name="status" value="draft">
+                    <input type="hidden" name="referer" value="referer">
+
+                    <input type="submit" value="Save Draft">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>activateMenuItem("console");</script>
+
+!==lastComment
+<div class="last-comment">
+    From <i>$author</i> at <a href="/note/$noteId">$noteName</a><br>
+    $text
+    $moderate
+</div>
+==!
+
+!==lastCommentModerate
+<br>
+<div class="text-h-menu">
+    <a href="/admin/comments/allow?id=$id" class="allow-link">Allow</a>
+    <a href="/admin/comments/block?id=$id" class="block-link">Block</a>
+</div>
+==!
+
+!==noLastComments
+You haven't recent comments
+==!

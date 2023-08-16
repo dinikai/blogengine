@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/admin_layout.css">
+    <link rel="stylesheet" href="/icomoon/style.css">
+    <title>Admin → @title</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            var scrollpos = sessionStorage.getItem('scrollpos');
+            if (scrollpos) window.scrollTo(0, scrollpos);
+        });
+
+        window.onbeforeunload = function(e) {
+            sessionStorage.setItem('scrollpos', window.scrollY);
+        };
+    </script>
+</head>
+<body>
+    <div class="side-bar">
+        <a href="/admin" class="side-bar-item" id="console">
+            <span class="icon-home bar-icon"></span> Console
+        </a>
+        <a href="/admin/notes" class="side-bar-item" id="notes">
+            <span class="icon-pencil bar-icon"></span> Notes
+            <div class="number-circle side-bar-number-circle">@notesCount</div>
+        </a>
+        <a href="/admin/pages" class="side-bar-item" id="pages">
+            <span class="icon-folder-open bar-icon"></span> Pages
+            <div class="number-circle side-bar-number-circle">@pagesCount</div>
+        </a>
+        <a href="/admin/comments" class="side-bar-item" id="comments">
+            <span class="icon-bubbles2 bar-icon"></span> Comments
+            <div class="number-circle side-bar-number-circle">@commentsCount</div>
+        </a>
+        <a href="/admin/users" class="side-bar-item" id="users">
+            <span class="icon-users bar-icon"></span> Users
+        </a>
+        <a href="/admin/settings" class="side-bar-item" id="settings">
+            <span class="icon-wrench bar-icon"></span> Settings
+        </a>
+        <a href="/" class="side-bar-item">
+            <span class="icon-forward bar-icon"></span> Go to website
+        </a>
+    </div>
+
+    <script>
+        function activateMenuItem(id) {
+            document.getElementById(id).classList.add("side-bar-item-active");
+        }
+
+        function removeItem(name) {
+            return confirm(`Are you sure to remove ${name}?`);
+        }
+    </script>
+
+    <div class="container">
+        @body
+    </div>
+</body>
+</html>

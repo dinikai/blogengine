@@ -1,0 +1,65 @@
+<h2 style="display: inline-block;"><span class="icon-folder-open icon"></span> Pages</h2>
+<div class="number-circle">@pagesCount</div>
+
+<div class="v-margin"></div>
+@messages
+
+<form method="post" class="form" autocomplete="off">
+    <label for="mainPage">
+        Index page:<br>
+    </label>
+    <div style="grid-template-columns: 6fr 1fr;" class="grid">
+        <select name="main_page" id="mainPage">
+            @pageSelect
+        </select>
+        <input type="submit" value="Save">
+    </div>
+    <input type="hidden" name="h" value="save">
+    
+</form>
+
+<div class="after-header">
+    <span style="margin-right: 5px;">You have <b>@pagesCount</b> pages</span>
+    <a class="button" href="/admin/notes/new/?type=page">New page</a>
+</div>
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>URL</th>
+        <th>Markup</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @pagesList
+</table>
+
+<script>activateMenuItem("pages");</script>
+
+!==optionPage
+<option value="$id" $selected>$name (/$url)</option>
+==!
+
+!==page
+<tr>
+    <td>$number</td>
+    <td><span class="bold">$title</span></td>
+    <td>/$url</td>
+    <td>$markup</td>
+    <td><a href="/$url">Go</a> / <a href="/admin/pages/edit/?id=$id" class="edit-link">Edit</a></td>
+    <td><a href="/admin/pages/remove/?id=$id" onclick="return removeItem(`$title`);" class="remove-link">Remove</a></td>
+</tr>
+==!
+
+!==saveMessage
+<div class="note-message">
+    Page saved successfully
+</div>
+==!
+
+!==errorMessage
+<div class="error-message">
+    Save error!
+</div>
+==!

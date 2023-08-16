@@ -1,0 +1,85 @@
+<b>@lastChanged</b>
+@text
+
+<div class="v-margin"></div>
+<hr>
+
+@commentForm
+@commentMessage
+
+<div class="comments">
+    @comments
+</div>
+
+<script>
+    let comments = [@jsComments];
+    let reply = null;
+    let replyHidden = null;
+
+    function replyTo(id) {
+        clearReply();
+
+        let comment = comments.find(x => x.id == id);
+        reply = comment;
+        document.getElementById("replyTo").innerHTML = `Reply to <b>${comment.author}</b> (<a onclick="clearReply();">Cancel</a>)`;
+
+        replyHidden = document.createElement("input");
+        replyHidden.type = "hidden";
+        replyHidden.name = "reply";
+        replyHidden.value = id;
+        document.getElementById("commentForm").appendChild(replyHidden);
+    }
+
+    function clearReply() {
+        document.getElementById("replyTo").innerHTML = "";
+        if (replyHidden != null)
+            document.getElementById("commentForm").removeChild(replyHidden);
+        replyHidden = null;
+    }
+
+    document.getElementById("commentText").addEventListener("input", () => {
+        document.getElementById("commentLength").innerText = document.getElementById("commentText").value.length;
+    });
+</script>
+
+!==comment
+<div id="comment$id" class="comment" style="margin-left: calc($rank * 25px);">
+    <div class="comment-head"><b>$author</b> at $date</div>
+    <div class="comment-body">$text</div>
+    <div class="comment-body">
+        <a href="#comment_form" onclick="replyTo($id);" class="reply">
+            <span class="icon-redo2"></span> Reply
+        </a>
+    </div>
+</div>
+==!
+
+!==jsComment
+{id: $id, author: `$author`, text: `$text`},
+==!
+
+!==commentsNotAllowed
+<h3>Comments is disabled for this note</h3>
+==!
+
+!==commentForm
+<h3>Submit a comment</h3>
+<form class="form" id="commentForm" method="post" autocomplete="off">
+    <input type="text" name="author" placeholder="Your name" class="large-input" maxlength="100" required>
+
+    <div>
+        <textarea name="text" id="commentText" style="height: 70px;" spellcheck="false" maxlength="1000" required></textarea>
+        <div class="under-comment">
+            <span><span id="commentLength">0</span>/1000</span>
+            <span id="replyTo"></span>
+        </div>
+    </div>
+    
+    <input type="hidden" name="h" value="new_comment">
+    <input type="submit" value="Submit">
+</form>
+==!
+
+!==addCommentMessage
+<h3>Your comment will be considered</h3>
+==!

@@ -1,0 +1,40 @@
+<h2><span class="icon-folder-open icon"></span> Editing page</h2>
+
+<div class="v-margin"></div>
+<a href="/@pageUrl">Go to page</a> / <a href="/admin/pages/remove/@id" onclick="return removeItem(`@pageTitle`);" class="remove-link">Remove</a>
+<hr>
+@messages
+
+<form method="post" class="form" autocomplete="off">
+    <div class="title-grid-page title-grid">
+        <input type="text" name="title" value="@pageTitle" class="large-input" placeholder="Title">
+        <input type="text" name="url" value="@pageUrl" placeholder="URL">
+        <select name="content_type">
+            <optgroup label="Markup">
+                <option value="md" @mdSelected>Markdown</option>
+                <option value="html" @htmlSelected>HTML</option>
+            </optgroup>
+        </select>
+    </div>
+    <textarea name="text" spellcheck="false">@pageText</textarea>
+
+    <input type="hidden" name="h" value="save">
+    <input type="hidden" name="id" value="@id">
+    <input type="hidden" name="type" value="page">
+
+    <input type="submit" value="Save">
+</form>
+
+<script>activateMenuItem("pages");</script>
+
+!==saveMessage
+<div class="note-message">
+    Page saved successfully
+</div>
+==!
+
+!==errorMessage
+<div class="error-message">
+    Save error!
+</div>
+==!

@@ -1,0 +1,53 @@
+<h2><span class="icon-pencil icon"></span> Editing note</h2>
+
+<div class="v-margin"></div>
+<a href="/note/@id">Go to note</a> / <a href="/admin/notes/remove/@id" onclick="return removeItem(`@noteTitle`);" class="remove-link">Remove</a>
+
+<hr>
+@messages
+
+<form method="post" class="form" autocomplete="off">
+    <div class="title-grid title-grid-page">
+        <input type="text" name="title" value="@noteTitle" class="large-input" placeholder="Title">
+        <select name="status">
+            <optgroup label="Status">
+                <option value="draft" @draftSelected>Draft</option>
+                <option value="private" @privateSelected>Private</option>
+                <option value="public" @publicSelected>Public</option>
+            </optgroup>
+        </select>
+        <select name="content_type">
+            <optgroup label="Markup">
+                <option value="md" @mdSelected>Markdown</option>
+                <option value="html" @htmlSelected>HTML</option>
+            </optgroup>
+        </select>
+    </div>
+    <textarea name="text" spellcheck="false">@noteText</textarea>
+
+    <input type="hidden" name="h" value="save">
+    <input type="hidden" name="id" value="@id">
+
+    <div class="settings-flex">
+        <h3>Extra settings</h3>
+        <div class="settings-flex-wrapper">
+            <label><input type="checkbox" name="allow_comments" @allowComments>Allow comments</label>
+        </div>
+    </div>
+
+    <input type="submit" value="Save">
+</form>
+
+<script>activateMenuItem("notes");</script>
+
+!==saveMessage
+<div class="note-message">
+    Note saved successfully
+</div>
+==!
+
+!==errorMessage
+<div class="error-message">
+    Save error!
+</div>
+==!

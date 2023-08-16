@@ -1,0 +1,56 @@
+<h2><span class="icon-wrench icon"></span> Settings</h2>
+<div class="v-margin"></div>
+
+@messages
+<form class="form" method="post" autocomplete="off">
+    <div class="settings-grid">
+        <div class="settings-column">
+            <fieldset class="settings-row form">
+                <legend>Blog settings</legend>
+                <label>
+                    Blog name:
+                    <input type="text" name="app_name" value="@applicationName">
+                </label>
+                <label>
+                    Blog description:
+                    <input type="text" name="app_description" value="@applicationDescription">
+                </label>
+                <label>
+                    Theme:<br>
+                    <select name="theme">
+                        @themeOptions
+                    </select>
+                </label>
+            </fieldset>
+        </div>
+
+        <div class="settings-column">
+            <fieldset class="settings-row form">
+                <legend>Comments settings</legend>
+                <label><input type="checkbox" name="allow_comments" @allowComments>Allow comments</label>
+                <label><input type="checkbox" name="moderate_comments" @moderateComments>Moderate comments</label>
+            </fieldset>
+        </div>
+    </div>
+
+    <input type="hidden" name="h" value="save">
+    <input type="submit" value="Save">
+</form>
+
+<script>activateMenuItem("settings");</script>
+
+!==themeOption
+<option value="$dir" $selected>$name</option>
+==!
+
+!==saveMessage
+<div class="note-message">
+    Settings saved successfully
+</div>
+==!
+
+!==errorMessage
+<div class="error-message">
+    Save error!
+</div>
+==!
