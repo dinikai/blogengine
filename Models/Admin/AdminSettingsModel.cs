@@ -1,4 +1,5 @@
-﻿using HttpEngine.Core;
+﻿using BlogEngine.Database;
+using HttpEngine.Core;
 
 namespace BlogEngine.Models.Admin
 {
@@ -24,6 +25,8 @@ namespace BlogEngine.Models.Admin
 
             byte[] buffer = File("admin/settings.html", request);
 
+            using BlogContext db = new();
+
             string messages = "";
             if (request.Handler == "save")
             {
@@ -35,6 +38,10 @@ namespace BlogEngine.Models.Admin
 
                     BlogConfig.AllowComments = request.Arguments.Arguments.ContainsKey("allow_comments");
                     BlogConfig.ModerateComments = request.Arguments.Arguments.ContainsKey("moderate_comments");
+
+                    Page? page = db.Pages.FirstOrDefault(x => x.Id == Convert.ToInt32(request.Arguments.Arguments["main_page"]));
+                    if (page != null)
+                        BlogConfig.IndexPage = page;
 
                     messages += buffer.GetSection("saveMessage");
                 }
@@ -57,6 +64,23 @@ namespace BlogEngine.Models.Admin
                 });
             }
 
+            string pageSelect = "";
+            Page? mainPage = BlogConfig.IndexPage;
+            foreach (Page page in db.Pages)
+            {
+                string selected = "";
+                if (mainPage != null)
+                    if (mainPage.Id == page.Id)
+                        selected = "selected";
+                pageSelect += buffer.GetSection("optionPage", new()
+                {
+                    ["id"] = page.Id,
+                    ["name"] = page.Name,
+                    ["url"] = page.Url,
+                    ["selected"] = selected
+                });
+            }
+
             buffer = buffer.ParseView(new()
             {
                 ["title"] = "Settings",
@@ -65,7 +89,8 @@ namespace BlogEngine.Models.Admin
                 ["themeOptions"] = themeOptions,
                 ["allowComments"] = BlogConfig.AllowComments ? "checked" : "",
                 ["moderateComments"] = BlogConfig.ModerateComments ? "checked" : "",
-                ["messages"] = messages
+                ["messages"] = messages,
+                ["pageSelect"] = pageSelect
             });
 
             return new ModelResult(buffer);

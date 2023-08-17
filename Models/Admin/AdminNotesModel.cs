@@ -50,16 +50,20 @@ namespace BlogEngine.Models.Admin
                     }
 
                     string status = "Private";
+                    string filter = "all-filter ";
                     switch (note.NoteStatus)
                     {
                         case NoteStatus.Draft:
                             status = "<span class=\"icon-clock\"></span> Draft";
+                            filter += "draft-filter";
                             break;
                         case NoteStatus.Private:
                             status = "<span class=\"icon-key\"></span> Private";
+                            filter += "private-filter";
                             break;
                         case NoteStatus.Public:
                             status = "<span class=\"icon-earth\"></span> Public";
+                            filter += "public-filter";
                             break;
                     }
 
@@ -71,6 +75,7 @@ namespace BlogEngine.Models.Admin
                         ["markup"] = markup,
                         ["lastChanged"] = note.LastChanged.ToString("HH:mm dd.MM.yyyy"),
                         ["status"] = status,
+                        ["filter"] = filter
                     });
                 }
             }

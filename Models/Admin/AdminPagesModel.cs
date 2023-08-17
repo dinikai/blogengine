@@ -32,23 +32,6 @@ namespace BlogEngine.Models.Admin
 
             var db = new BlogContext();
 
-            string messages = "";
-            if (request.Handler == "save")
-            {
-                try
-                {
-                    Page? page = db.Pages.FirstOrDefault(x => x.Id == Convert.ToInt32(request.Arguments.Arguments["main_page"]));
-                    if (page != null)
-                        BlogConfig.IndexPage = page;
-
-                    messages += buffer.GetSection("saveMessage");
-                }
-                catch
-                {
-                    messages += buffer.GetSection("errorMessage");
-                }
-            }
-
             string pagesList = "";
             {
                 int i = 0;
@@ -97,7 +80,6 @@ namespace BlogEngine.Models.Admin
             buffer = buffer.ParseView(new()
             {
                 ["title"] = "Pages",
-                ["messages"] = messages,
                 ["pageSelect"] = pageSelect,
                 ["pagesCount"] = db.Pages.Count(),
                 ["pagesList"] = pagesList,

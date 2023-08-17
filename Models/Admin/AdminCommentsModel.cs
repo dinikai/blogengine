@@ -1,4 +1,5 @@
-﻿using HttpEngine.Core;
+﻿using BlogEngine.Database;
+using HttpEngine.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,16 +41,20 @@ namespace BlogEngine.Models.Admin
                 Note note = db.Notes.First(x => x.Id == comment.NoteId);
 
                 string moderate = "";
+                string filter = "all-filter ";
                 switch (comment.Status)
                 {
                     case CommentStatus.Blocked:
                         moderate = buffer.GetSection("commentModerateBlocked", new() { ["id"] = comment.Id });
+                        filter += "blocked-filter";
                         break;
                     case CommentStatus.Waiting:
                         moderate = buffer.GetSection("commentModerate", new() { ["id"] = comment.Id });
+                        filter += "waiting-filter";
                         break;
                     case CommentStatus.Allowed:
                         moderate = buffer.GetSection("commentModerateAllowed", new() { ["id"] = comment.Id });
+                        filter += "allowed-filter";
                         break;
                 }
 
@@ -61,7 +66,8 @@ namespace BlogEngine.Models.Admin
                     ["author"] = comment.Author,
                     ["id"] = comment.Id,
                     ["moderate"] = moderate,
-                    ["class"] = comment.Status == CommentStatus.Blocked ? "admin-comment-blocked" : ""
+                    ["class"] = comment.Status == CommentStatus.Blocked ? "admin-comment-blocked" : "",
+                    ["filter"] = filter
                 });
                 i++;
             }
