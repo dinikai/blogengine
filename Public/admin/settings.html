@@ -2,45 +2,66 @@
 <div class="v-margin"></div>
 
 @messages
-<form class="form" method="post" autocomplete="off">
-    <div class="settings-grid">
-        <div class="settings-column">
-            <fieldset class="settings-row form">
-                <legend>Blog settings</legend>
-                <label>
-                    Blog name:
-                    <input type="text" name="app_name" value="@applicationName">
-                </label>
-                <label>
-                    Blog description:
-                    <input type="text" name="app_description" value="@applicationDescription">
-                </label>
-                <label>
-                    Theme:<br>
-                    <select name="theme">
-                        @themeOptions
-                    </select>
-                </label>
-            </fieldset>
-        </div>
 
-        <div class="settings-column">
-            <fieldset class="settings-row form">
-                <legend>Comments settings</legend>
-                <label><input type="checkbox" name="allow_comments" @allowComments>Allow comments</label>
-                <label><input type="checkbox" name="moderate_comments" @moderateComments>Moderate comments</label>
-            </fieldset>
+<div class="v-margin"></div>
+<div class="text-h-menu tab-buttons">
+    <a class="button" href="#blogTab" onclick="openTab(this, 'blogTab', 'settingsTabs');" id="blogTabButton">Blog</a>
+    <a class="button" href="#commentsTab" onclick="openTab(this, 'commentsTab', 'settingsTabs');" id="commentsTabButton">Comments</a>
+    <a class="button" href="#pagesTab" onclick="openTab(this, 'pagesTab', 'settingsTabs');" id="pagesTabButton">Pages</a>
+</div>
+<div class="v-margin"></div>
+
+<form class="form" method="post" autocomplete="off">
+    <div id="settingsTabs">
+        <div class="form" id="blogTab">
+            <label>
+                Blog name:
+                <input type="text" name="app_name" value="@applicationName">
+            </label>
+            <label>
+                Blog description:
+                <input type="text" name="app_description" value="@applicationDescription">
+            </label>
+            <label>
+                Theme:<br>
+                <select name="theme">
+                    @themeOptions
+                </select>
+            </label>
+        </div>
+    
+        <div class="form" id="commentsTab">
+            <label><input type="checkbox" name="allow_comments" @allowComments>Allow comments</label>
+            <label><input type="checkbox" name="moderate_comments" @moderateComments>Moderate comments</label>
+        </div>
+    
+        <div class="form" id="pagesTab">
+            <label>
+                Index page:<br>
+                <select name="main_page" id="mainPage">
+                    @pageSelect
+                </select>
+            </label>
         </div>
     </div>
-
+    
     <input type="hidden" name="h" value="save">
     <input type="submit" value="Save">
 </form>
 
-<script>activateMenuItem("settings");</script>
+<script>
+    activateMenuItem("settings");
+    if (anchor == "")
+        anchor = "blogTab";
+    openTab(document.getElementById(anchor + "Button"), anchor, 'settingsTabs');
+</script>
 
 !==themeOption
 <option value="$dir" $selected>$name</option>
+==!
+
+!==optionPage
+<option value="$id" $selected>$name (/$url)</option>
 ==!
 
 !==saveMessage

@@ -2,14 +2,27 @@
 <div class="number-circle">@rootCount</div>
 <div class="v-margin"></div>
 
-<div class="admin-comments">
+<div class="text-h-menu filters">
+    <a href="#all" onclick="filter(this, 'all-filter', 'commentList');" id="allButton">All</a> <span class="divider">|</span>
+    <a href="#blocked" onclick="filter(this, 'blocked-filter', 'commentList');" id="blockedButton">Blocked</a> <span class="divider">|</span>
+    <a href="#waiting" onclick="filter(this, 'waiting-filter', 'commentList');" id="waitingButton">Waiting</a> <span class="divider">|</span>
+    <a href="#allowed" onclick="filter(this, 'allowed-filter', 'commentList');" id="allowedButton">Allowed</a>
+</div>
+<div class="v-margin"></div>
+
+<div class="admin-comments" id="commentList">
     @comments
 </div>
 
-<script>activateMenuItem("comments");</script>
+<script>
+    activateMenuItem("comments");
+    if (anchor == "")
+        anchor = "all";
+    filter(document.getElementById(anchor + "Button"), anchor + "-filter", 'commentList');
+</script>
 
 !==comment
-<div class="admin-comment $class">
+<div class="admin-comment $class $filter">
     From <i>$author</i> at <a href="/note/$noteId">$noteName</a><br>
     <span class="admin-comment-header">$text</span>
     <br>

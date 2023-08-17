@@ -6,23 +6,41 @@
     <a class="button" href="/admin/notes/new">New note</a>
 </div>
 
+<div class="text-h-menu filters">
+    <a href="#all" onclick="filter(this, 'all-filter', 'notesList');" id="allButton">All</a> <span class="divider">|</span>
+    <a href="#draft" onclick="filter(this, 'draft-filter', 'notesList');" id="draftButton">Draft</a> <span class="divider">|</span>
+    <a href="#private" onclick="filter(this, 'private-filter', 'notesList');" id="privateButton">Private</a> <span class="divider">|</span>
+    <a href="#public" onclick="filter(this, 'public-filter', 'notesList');" id="publicButton">Public</a>
+</div>
+<div class="v-margin"></div>
+
 <table class="table">
-    <tr>
-        <th>#</th>
-        <th>Title</th>
-        <th>Last changed</th>
-        <th>Status</th>
-        <th>Markup</th>
-        <th></th>
-        <th></th>
-    </tr>
-    @notesList
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Last changed</th>
+            <th>Status</th>
+            <th>Markup</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody id="notesList">
+        @notesList
+    </tbody>
 </table>
 
-<script>activateMenuItem("notes");</script>
+<script>
+    activateMenuItem("notes");
+    if (anchor == "")
+        anchor = "all";
+    filter(document.getElementById(anchor + "Button"), anchor + "-filter", 'notesList');
+</script>
 
 !==note
-<tr>
+<tr class="$filter">
     <td>$number</td>
     <td><span class="bold">$title</span></td>
     <td>$lastChanged</td>

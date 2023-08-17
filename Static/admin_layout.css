@@ -90,13 +90,13 @@ a:hover {
   .table tr {
     border-top: 1px solid #d3d3d3;
     border-bottom: 1px solid #d3d3d3; }
-  .table tr:first-child {
+  .table tr:not([style*="display: none"]):first-child {
     border-top: none;
     padding-top: none; }
-  .table tr:last-child {
+  .table tr:not([style*="display: none"]):last-child {
     border-bottom: none;
     padding-bottom: none; }
-  .table tr:nth-child(even) {
+  .table tr:not([style*="display: none"]):nth-child(even) {
     background: #f5f5f5; }
   .table td, .table th {
     padding-left: 15px;
@@ -150,7 +150,8 @@ h1, h2, h3 {
   .form .title-grid-page {
     grid-template-columns: 4fr 1fr 1fr !important; }
   .form legend {
-    width: initial; }
+    width: initial;
+    margin-bottom: 0; }
 
 .number-circle {
   border-radius: 50%;
@@ -203,12 +204,12 @@ input[type="submit"]:hover, input[type="reset"]:hover, button:hover, select:hove
   border-radius: 5px; }
 
 .note-message {
-  border-color: #608aff; }
+  border-color: #8dabff; }
 
 .error-message {
-  border-color: #ff3535; }
+  border-color: #ff7272; }
 
-.button {
+.button, button {
   display: inline-block;
   background-color: linear-gradient(0deg, #d2d2d2 0%, #d8d8d8 100%);
   background-color: #dfdfdf;
@@ -218,9 +219,10 @@ input[type="submit"]:hover, input[type="reset"]:hover, button:hover, select:hove
   cursor: pointer;
   transition: all 0.06s;
   color: #000;
-  text-decoration: none; }
+  text-decoration: none;
+  font-size: 11pt; }
 
-.button:hover {
+.button:hover, button:hover {
   background-color: #dadada; }
 
 .after-header {
@@ -310,7 +312,7 @@ hr {
 .settings-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px; }
+  gap: 20px; }
   .settings-grid .settings-column {
     display: flex;
     flex-direction: column;
@@ -321,5 +323,21 @@ hr {
 
 .text-h-menu > * {
   margin-right: 5px; }
+
+.filtered {
+  display: none; }
+
+.filters {
+  margin-left: 15px; }
+  .filters .filter-selected {
+    color: #aaaaaa;
+    text-decoration: none;
+    cursor: initial; }
+  .filters .divider {
+    color: #8b8b8b; }
+
+.tab-buttons .tab-button-selected, .tab-buttons .tab-button-selected:hover {
+  background: #c4c4c4;
+  cursor: default; }
 
 /*# sourceMappingURL=admin_layout.css.map */

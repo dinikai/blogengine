@@ -17,6 +17,7 @@
             sessionStorage.setItem('scrollpos', window.scrollY);
         };
     </script>
+    <script src="/admin.js"></script>
 </head>
 <body>
     <div class="side-bar">
@@ -45,16 +46,6 @@
             <span class="icon-forward bar-icon"></span> Go to website
         </a>
     </div>
-
-    <script>
-        function activateMenuItem(id) {
-            document.getElementById(id).classList.add("side-bar-item-active");
-        }
-
-        function removeItem(name) {
-            return confirm(`Are you sure to remove ${name}?`);
-        }
-    </script>
 
     <div class="container">
         @body
